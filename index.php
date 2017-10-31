@@ -10,4 +10,10 @@ use App\Order;
 $deliver = new BlackCat();
 $order = new Order($deliver);
 
-echo($order->showDeliverType());
+// echo($order->showDeliverType());
+
+$app = new BasicContainer();
+$app->bind('sendBy', 'BlackCat');
+$app->bind('getSendType', 'Order');
+$order = $app->make('getSendType');
+$order->showDeliverType();
