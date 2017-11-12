@@ -1,2 +1,5 @@
 /vendor/
 .env
+.idea/container_learn.iml
+.idea/modules.xml
+.idea/workspace.xml

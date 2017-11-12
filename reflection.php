@@ -19,8 +19,9 @@ class A
 
 $b = new B();
 $reflection = new ReflectionClass('A');
+// 為A創建實例 要帶入class B 因為class A 依賴注入class B
 $instance = $reflection->newInstanceArgs([$b]);
-
+// $instance為A的反射實例 因此也同樣擁有方法dosomething()
 $instance->dosomething();
 
 $constructor = $reflection->getConstructor();
