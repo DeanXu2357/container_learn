@@ -25,7 +25,7 @@ class OrderTest extends TestCase
      * ＠test
      * @covers class::(Order)
      */
-    public function test測試取得運送方法()
+    public function 取得運送方法()
     {
         // arrange
         $order = $this->target;
