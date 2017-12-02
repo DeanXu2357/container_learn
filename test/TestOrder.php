@@ -3,7 +3,6 @@
 use App\Order;
 use PHPUnit\Framework\TestCase;
 use \Mockery;
-use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 /**
  * OrderTest
@@ -12,22 +11,31 @@ use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
  */
 class OrderTest extends TestCase
 {
-    use MockeryPHPUnitIntegration;
+    protected $target;
+
+    public function setUp()
+    {
+        // set up
+        $mockery = Mockery::mock('\App\deliver\BlackCat');
+        $mockery->shouldReceive('sendBy')->once()->andReturn('blackcat');
+        $this->target = new Order($mockery);
+    }
 
     /**
      * ＠test
      * @covers class::(Order)
      */
-    public function 測試取得運送方法()
+    public function test測試取得運送方法()
     {
-        $mockery = Mockery::mock('\App\deliver\BlackCat');
-        $mockery->shouldReceive('sendBy')->once()->andReturn('blackcat');
-
-        $order = new Order($mockery);
+        // arrange
+        $order = $this->target;
         $expect = 'blackcat';
+
+        // act
         $actual = $order->showDeliverType();
+
+        // assert
         $this->assertEquals($actual, $expect);
     }
-
 }
 
