@@ -13,7 +13,7 @@ class Order
         $this->deliver = $deliver;
     }
 
-    public function showDeliverType()
+    public function showDeliverType() : string
     {
         return $this->deliver->sendBy();
     }
